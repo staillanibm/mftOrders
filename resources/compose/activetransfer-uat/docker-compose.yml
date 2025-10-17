@@ -7,6 +7,7 @@ services:
     volumes:
       - ./activetransfer-uat/application.properties:/opt/webmethods/IntegrationServer/instances/default/application.properties
       - at-packages-uat:/opt/webmethods/IntegrationServer/instances/default/packages
+      - ./wpm:/wpm
       - ./files-uat:/files
     ports:
       - "45555:5555"
@@ -17,3 +18,4 @@ services:
 
 volumes:
   at-packages-uat:
+  gh-runner-uat:
