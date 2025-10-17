@@ -1,0 +1,20 @@
+services:        
+  mft-dev:
+    image: at:11.1.20251017
+    container_name: mft-dev 
+    hostname: mft-dev
+    platform: linux/amd64 
+    volumes:
+      - ./activetransfer-dev/application.properties:/opt/webmethods/IntegrationServer/instances/default/application.properties
+      - at-packages-dev:/opt/webmethods/IntegrationServer/instances/default/packages
+      - $HOME/git:/git
+      - ./files:/files
+    ports:
+      - "35555:5555"
+      - "10000:10000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  at-packages-dev:

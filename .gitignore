@@ -1,0 +1,6 @@
+*.bak
+.env
+.DS_Store
+/bin/
+files-uat/
+files/

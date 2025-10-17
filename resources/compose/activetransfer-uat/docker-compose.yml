@@ -1,0 +1,19 @@
+services:        
+  mft-uat:
+    image: at:11.1.20251017
+    container_name: mft-uat
+    hostname: mft-uat
+    platform: linux/amd64 
+    volumes:
+      - ./activetransfer-uat/application.properties:/opt/webmethods/IntegrationServer/instances/default/application.properties
+      - at-packages-uat:/opt/webmethods/IntegrationServer/instances/default/packages
+      - ./files-uat:/files
+    ports:
+      - "45555:5555"
+      - "20000:10000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  at-packages-uat:
