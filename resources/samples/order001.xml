@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Order>
+  <OrderID>ORD-001</OrderID>
+  <CustomerName>John Doe </CustomerName>
+  <OrderDate>2025-10-17</OrderDate>
+  <ShippingAddress>123 Main Street, Springfield</ShippingAddress>
+  <TotalAmount>110</TotalAmount>
+  <Currency>EUR</Currency>
+  <Items>
+    <Item>
+      <ProductID>P123</ProductID>
+      <Quantity>2</Quantity>
+      <Price>50</Price>
+    </Item>
+    <Item>
+      <ProductID>P456</ProductID>
+      <Quantity>1</Quantity>
+      <Price>10</Price>
+    </Item>
+  </Items>
+</Order>
