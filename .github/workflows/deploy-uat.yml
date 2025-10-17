@@ -1,0 +1,32 @@
+name: Deploy package to UAT
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main 
+
+jobs:
+  bdeploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Update the package using webMethods package manager
+      run: |
+        ${{ vars.CONTAINER_RUNTIME }} exec -it -e GIT_TOKEN="${{ secrets.GH_PAT }}" mft-uat \
+          sh -c "/wpm/bin/wpm.sh update -u "${{ secrets.GH_ACCOUNT }}" -p \$GIT_TOKEN -r https://github.com/${{ secrets.GH_ACCOUNT }} -d /opt/webmethods/IntegrationServer/instances/default ${{ vars.PACKAGE_NAME }}"
+      env:
+        GH_ACCOUNT: ${{ secrets.GH_ACCOUNT }}
+        GH_PAT: ${{ secrets.GH_PAT }}
+
+    - name: Reload package
+      run: |
+        curl -u "${{ secrets.IS_USERNAME }}":"${{ secrets.IS_PASSWORD }}" \
+          -X POST "${{ vars.IS_ROOT_URL }}/admin/package/${{ vars.PACKAGE_NAME }}?action=reload" \
+          -H "Accept: application/json"
+      env:
+        IS_USERNAME: ${{ secrets.IS_USERNAME }} 
+        IS_PASSWORD: ${{ secrets.IS_PASSWORD }} 
