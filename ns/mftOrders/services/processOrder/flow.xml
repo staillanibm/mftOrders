@@ -201,7 +201,7 @@
   <DATA ENCODING="XMLValues" I18N="true">
 
 <Values version="2.0">
-  <value name="xml">yyyy-MM-dd'T'HH:mm:ss</value>
+  <value name="xml">yyyy-MM-dd</value>
   <record name="type" javaclass="com.wm.util.Values">
     <value name="node_type">field</value>
     <value name="node_subtype">unknown</value>
